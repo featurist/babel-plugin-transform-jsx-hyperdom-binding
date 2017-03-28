@@ -9,7 +9,7 @@ module.exports = function (babel) {
       JSXAttribute: function (path) {
         var namePath = path.get('name')
         var valuePath = path.get('value')
-        if (valuePath.node.type == 'StringLiteral' && namePath.node.type == 'JSXIdentifier' && namePath.node.name == 'binding') {
+        if (valuePath.node && valuePath.node.type == 'StringLiteral' && namePath.node.type == 'JSXIdentifier' && namePath.node.name == 'binding') {
           var match = /^(.*)\.([a-z_][a-z0-9_]*$)/.exec(valuePath.node.value)
           if (match) {
             var parsed = babylon.parse(match[1])
