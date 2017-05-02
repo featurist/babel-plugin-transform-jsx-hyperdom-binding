@@ -2,6 +2,16 @@ var jsx = require('babel-plugin-syntax-jsx')
 var babylon = require('babylon')
 
 module.exports = function (babel) {
+  function transform(path, expression) {
+    if (expression.type === 'MemberExpression') {
+      var property = !expression.computed && expression.property.type === 'Identifier'
+        ? babel.types.stringLiteral(expression.property.name)
+        : expression.property
+
+      path.replaceWith(babel.types.jSXExpressionContainer(babel.types.arrayExpression([expression.object, property])))
+    }
+  }
+
   return {
     inherits: jsx,
 
@@ -9,12 +19,16 @@ module.exports = function (babel) {
       JSXAttribute: function (path) {
         var namePath = path.get('name')
         var valuePath = path.get('value')
-        if (valuePath.node && valuePath.node.type == 'StringLiteral' && namePath.node.type == 'JSXIdentifier' && namePath.node.name == 'binding') {
-          var match = /^(.*)\.([a-z_][a-z0-9_]*$)/i.exec(valuePath.node.value)
-          if (match) {
-            var parsed = babylon.parse(match[1])
-            var expression = parsed.program.body[0].expression
-            valuePath.replaceWith(babel.types.jSXExpressionContainer(babel.types.arrayExpression([expression, babel.types.stringLiteral(match[2])])))
+
+        if (valuePath.node && namePath.node.type == 'JSXIdentifier' && namePath.node.name == 'binding') {
+          if (valuePath.node.type == 'StringLiteral') {
+            var parsed = babylon.parse(valuePath.node.value)
+            if (parsed.program.body.length === 1 && parsed.program.body[0].type === 'ExpressionStatement') {
+              var expression = parsed.program.body[0].expression
+              transform(valuePath, expression)
+            }
+          } else {
+            transform(valuePath, valuePath.node.expression)
           }
         }
       },
