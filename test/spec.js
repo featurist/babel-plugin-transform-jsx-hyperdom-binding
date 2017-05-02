@@ -54,13 +54,6 @@ describe('hyperdom binding JSX transform', function () {
     )
   })
 
-  it('can take blocks', function () {
-    expectCompilation(
-      '<input binding={object.method()[1]}/>',
-      'hyperdom.jsx("input", { binding: [object.method(), 1] });'
-    )
-  })
-
   describe('ignoring non-properties', function () {
     it("doesn't transform if the property is a method", function () {
       expectCompilation(
