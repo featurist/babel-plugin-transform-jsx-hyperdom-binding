@@ -1,4 +1,4 @@
-# babel-plugin-transform-jsx-hyperdom-binding
+# babel-plugin-transform-jsx-hyperdom-binding [![npm version](https://img.shields.io/npm/v/babel-plugin-transform-jsx-hyperdom-binding.svg)](https://www.npmjs.com/package/babel-plugin-transform-jsx-hyperdom-binding) [![npm](https://img.shields.io/npm/dm/babel-plugin-transform-jsx-hyperdom-binding.svg)](https://www.npmjs.com/package/babel-plugin-transform-jsx-hyperdom-binding) [![Build Status](https://travis-ci.org/featurist/babel-plugin-transform-jsx-hyperdom-binding.svg?branch=master)](https://travis-ci.org/featurist/babel-plugin-transform-jsx-hyperdom-binding)
 
 > Turns binding attributes into hyperdom bindings
 
