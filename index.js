@@ -1,4 +1,4 @@
-var jsx = require('babel-plugin-syntax-jsx')
+var jsx = require('@babel/plugin-syntax-jsx').default
 var babylon = require('babylon')
 
 module.exports = function (babel) {

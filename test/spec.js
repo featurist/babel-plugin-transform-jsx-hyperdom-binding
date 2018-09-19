@@ -1,8 +1,16 @@
 var expect = require('chai').expect
-var babel = require('babel-core');
-var syntaxJsx = require('babel-plugin-syntax-jsx');
-var transformReactJsx = require('babel-plugin-transform-react-jsx');
+var babel = require('@babel/core');
+var syntaxJsx = require('@babel/plugin-syntax-jsx');
+var transformReactJsx = require('@babel/plugin-transform-react-jsx');
 var bindingTransform = require('..');
+
+function trimIndentation(line) {
+  return line.replace(/^ */g, '')
+}
+
+function toSingleLine(text) {
+  return text.split('\n').map(trimIndentation).join(' ')
+}
 
 describe('hyperdom binding JSX transform', function () {
   function compile(source) {
@@ -16,7 +24,7 @@ describe('hyperdom binding JSX transform', function () {
   }
 
   function expectCompilation(input, expectedOutput) {
-    expect(compile(input)).to.equal(expectedOutput)
+    expect(toSingleLine(compile(input))).to.equal(expectedOutput)
   }
 
   it('converts a simple property access into a binding', function () {

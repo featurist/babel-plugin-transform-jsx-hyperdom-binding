@@ -20,6 +20,9 @@ hyperdom.jsx("input", { type: "text", binding: [item[n].method(), "name"] });
 
 ```sh
 npm install --save-dev babel-plugin-transform-jsx-hyperdom-binding
+
+# for babel 6
+npm install --save-dev babel-plugin-transform-jsx-hyperdom-binding@1.5.0
 ```
 
 ## Usage

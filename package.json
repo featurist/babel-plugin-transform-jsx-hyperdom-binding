@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-jsx-hyperdom-binding",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "> Turns binding attributes into hyperdom bindings",
   "main": "index.js",
   "scripts": {
@@ -9,17 +9,17 @@
   "author": "Tim Macfarlane <timmacfarlane@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "6.24.1",
-    "babel-plugin-transform-react-jsx": "6.24.1",
-    "chai": "3.5.0",
-    "mocha": "3.3.0"
+    "@babel/core": "7.1.0",
+    "@babel/plugin-transform-react-jsx": "7.0.0",
+    "chai": "4.1.2",
+    "mocha": "5.2.0"
   },
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babylon": "^6.17.4"
+    "@babel/plugin-syntax-jsx": "7.0.0",
+    "babylon": "6.17.4"
   },
   "repository": {
     "type": "git",
